@@ -1,8 +1,10 @@
 import React,{useEffect,useState} from 'react';
-
+import { useSelector,useDispatch } from 'react-redux';
+import uuid from "react-uuid";
 import SideBar from './SideBar';
-import './App.css'
+import '../App.css'
 import Main from './Main';
+import { addNotes ,updateNotes } from '../redux/noteAction';
 const mapState = (state) =>({
   notes: state.notes
 })

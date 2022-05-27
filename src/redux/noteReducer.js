@@ -1,6 +1,7 @@
 import * as types from './noteTypes'
 export const initialState = {
-  notes: []
+  notes: [],
+  noted: []
 }
 
  const  noteReducer = (state=initialState,action) => {
@@ -15,6 +16,8 @@ export const initialState = {
         ...state,
         notes: action.payload
       }
+      case types.EDIT_NOTE:
+      return {...state}
     default:
       return state
   }

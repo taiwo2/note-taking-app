@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
-
+import moment from 'moment'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 const Sidebar = ({notes,onAddNote,activeNote,setActiveNote}) => {
   const [textInput, setTextInput] = useState("");
   const sortedNotes = notes.filter(note => {
@@ -18,6 +20,7 @@ const Sidebar = ({notes,onAddNote,activeNote,setActiveNote}) => {
           className='search' type="text"
           onChange={(e) =>  setTextInput(e.target.value)} 
         />
+        <span className='fasearch'><FontAwesomeIcon icon={faSearch} /></span>
         <button onClick={onAddNote}>+</button>
       </div>
       <div className="app-sidebar-notes">

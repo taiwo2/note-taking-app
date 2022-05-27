@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux';
-const Main = () => {
+const Main = ({ activeNote, onUpdateNote }) => {
   const onEditField = (field, value) => {
     onUpdateNote({
       ...activeNote,
