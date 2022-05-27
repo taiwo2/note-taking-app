@@ -1,8 +1,6 @@
 import * as types from './noteTypes'
 export const initialState = {
-  notes: [
-  
-  ]
+  notes: []
 }
 
  const  noteReducer = (state=initialState,action) => {
@@ -13,11 +11,6 @@ export const initialState = {
         notes: [action.payload,...state.notes]
       }
       case types.UPDATE_NOTE:
-      //   const noteId= action.payload.id
-			// const noteIndex= state.notes.find(
-			// 	(note) => note.id === noteId
-			// )
-			
       return {
         ...state,
         notes: action.payload

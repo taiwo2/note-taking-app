@@ -23,9 +23,7 @@ const Home = () => {
     setActiveNote(newNote.id);
   };
   const onUpdateNote = (updatedNote) => {
-  
-    // console.log('dd',updateNotes)
-    const updatedNotesArr = notes.map((note) => {
+      const updatedNotesArr = notes.map((note) => {
       if (note.id === updatedNote.id) {
         return updatedNote;
       }
@@ -43,10 +41,13 @@ const Home = () => {
   return (
     <div className='main'>
       <SideBar
-      activeNote={activeNote}
-      setActiveNote={setActiveNote}
-      notes={notes} onAddNote={onAddNote} />
+        activeNote={activeNote}
+        setActiveNote={setActiveNote}
+        notes={notes} onAddNote={onAddNote} 
+      />
       <Main 
+        onUpdateNote={onUpdateNote}
+        activeNote={getActiveNote()}
       />
     </div>
   )
