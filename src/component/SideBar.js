@@ -18,10 +18,10 @@ const Sidebar = ({notes,onAddNote,activeNote,setActiveNote}) => {
           className='search' type="text"
           onChange={(e) =>  setTextInput(e.target.value)} 
         />
-        <button>+</button>
+        <button onClick={onAddNote}>+</button>
       </div>
       <div className="app-sidebar-notes">
-      {sortedNotes.map(({ id, title,body,lastModified }, i) => (
+      {sortedNotes.map(({ id, title,lastModified }, i) => (
           <div key={id}
             className={`app-sidebar-note ${id === activeNote && "active"}`}
             onClick={() => setActiveNote(id)}
