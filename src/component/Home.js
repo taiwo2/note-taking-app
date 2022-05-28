@@ -4,26 +4,42 @@ import uuid from "react-uuid";
 import SideBar from './SideBar';
 import '../App.css'
 import Main from './Main';
+import { supabase } from '../client';
 import { addNotes ,updateNotes } from '../redux/noteAction';
 const mapState = (state) =>({
   notes: state.notes
 })
+
 const Home = () => {
   const [activeNote, setActiveNote] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const {notes} = useSelector(mapState);
 
-   const onAddNote = () => {
+  const fetchdata = async () => {
+    const {data,id} = await supabase.from('noteTable')
+      .select('*')
+      dispatch(addNotes(data))
+      setActiveNote(data.id)
+  }
+  
+  
+  const onAddNote = async () => {
     const newNote = {
-      id: uuid(),
-      title: "Untitled Note",
-      body: "",
-      lastModified: Date.now(),
-    };
+          title: "Untitled Note",
+          body: "wahha",
+        };
+     await supabase
+      .from('noteTable')
+      .insert([
+         newNote
+      ])
+      fetchdata()
 
-    dispatch(addNotes(newNote))
-    setActiveNote(newNote.id);
-  };
+  }
+  useEffect(() => {
+    fetchdata ()
+  },[])
+ 
   const onUpdateNote = (updatedNote) => {
       const updatedNotesArr = notes.map((note) => {
       if (note.id === updatedNote.id) {
@@ -36,8 +52,10 @@ const Home = () => {
     dispatch(updateNotes(updatedNotesArr))
   };
   const getActiveNote = () => {
-    const noted = notes.find(({ id }) => id === activeNote);
-      return noted
+
+    console.log('ee',activeNote)
+  return notes.find(i => i.id === activeNote)
+ 
   };
 
   return (
