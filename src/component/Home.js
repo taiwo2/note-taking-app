@@ -1,6 +1,5 @@
 import React,{useEffect,useState} from 'react';
 import { useSelector,useDispatch } from 'react-redux';
-import uuid from "react-uuid";
 import SideBar from './SideBar';
 import '../App.css'
 import Main from './Main';
@@ -53,7 +52,7 @@ const Home = () => {
   };
   const getActiveNote = () => {
 
-    console.log('ee',notes)
+    // console.log('ee',notes)
   return notes.find(i => i.id === activeNote)
  
   };
