@@ -53,7 +53,7 @@ const Home = () => {
   };
   const getActiveNote = () => {
 
-    console.log('ee',activeNote)
+    console.log('ee',notes)
   return notes.find(i => i.id === activeNote)
  
   };

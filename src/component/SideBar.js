@@ -24,7 +24,7 @@ const Sidebar = ({notes,onAddNote,activeNote,setActiveNote}) => {
         <button onClick={onAddNote}>+</button>
       </div>
       <div className="app-sidebar-notes">
-      {sortedNotes.map(({ id, title,lastModified }, i) => (
+      {sortedNotes.map(({ id, title,created_at }, i) => (
           <div key={id}
             className={`app-sidebar-note ${id === activeNote && "active"}`}
             onClick={() => setActiveNote(id)}
@@ -32,7 +32,7 @@ const Sidebar = ({notes,onAddNote,activeNote,setActiveNote}) => {
             <div className="sidebar-note-title">
               <strong>{title}</strong>
               <small className="note-meta">
-                Created{" "}{moment(lastModified).startOf().fromNow()}
+                Created{" "}{moment(created_at).startOf().fromNow()}
             </small>
             </div>
           </div>
