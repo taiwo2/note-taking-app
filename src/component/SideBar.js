@@ -4,7 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 const Sidebar = ({notes,onAddNote,activeNote,setActiveNote}) => {
   const [textInput, setTextInput] = useState("");
-  const sortedNotes = notes.filter(note => {
+  
+  const sortedNotes = notes.sort((a,b) => b.created_at - a.created_at)
+  const filterNotes = sortedNotes.filter(note => {
     if (textInput === ""){
       return note
     }else {
@@ -24,7 +26,7 @@ const Sidebar = ({notes,onAddNote,activeNote,setActiveNote}) => {
         <button onClick={onAddNote}>+</button>
       </div>
       <div className="app-sidebar-notes">
-      {sortedNotes.map(({ id, title,created_at }, i) => (
+      {filterNotes.map(({ id, title,created_at }, i) => (
           <div key={id}
             className={`app-sidebar-note ${id === activeNote && "active"}`}
             onClick={() => setActiveNote(id)}
