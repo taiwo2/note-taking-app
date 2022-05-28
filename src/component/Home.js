@@ -41,8 +41,8 @@ const Home = () => {
         .select('*')
         dispatch(addNotes(data))
         setActiveNote(data.id)
-    }
-    fetchdata ()
+    };
+    fetchdata ();
   },[])
  
   const onUpdateNote = (updatedNote) => {
