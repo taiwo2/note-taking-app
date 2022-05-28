@@ -15,7 +15,7 @@ const Home = () => {
   const {notes} = useSelector(mapState);
 
   const fetchdata = async () => {
-    const {data,id} = await supabase.from('noteTable')
+    const {data} = await supabase.from('noteTable')
       .select('*')
       dispatch(addNotes(data))
       setActiveNote(data.id)
@@ -33,9 +33,15 @@ const Home = () => {
          newNote
       ])
       fetchdata()
-
   }
+
   useEffect(() => {
+    const fetchdata = async () => {
+      const {data} = await supabase.from('noteTable')
+        .select('*')
+        dispatch(addNotes(data))
+        setActiveNote(data.id)
+    }
     fetchdata ()
   },[])
  
