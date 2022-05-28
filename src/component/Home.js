@@ -13,10 +13,6 @@ const Home = () => {
   const [activeNote, setActiveNote] = useState(false);
   const dispatch = useDispatch();
   const {notes} = useSelector(mapState);
-
-
-  
-
   
   const fetchdata = async () => {
     const {data} = await supabase.from('noteTable')
@@ -42,8 +38,7 @@ const Home = () => {
       fetchdata()
   }
 
-  
- 
+
   const onUpdateNote = (updatedNote) => {
       const updatedNotesArr = notes.map((note) => {
       if (note.id === updatedNote.id) {
