@@ -14,13 +14,20 @@ const Home = () => {
   const dispatch = useDispatch();
   const {notes} = useSelector(mapState);
 
+
+  
+
+  
   const fetchdata = async () => {
     const {data} = await supabase.from('noteTable')
       .select('*')
       dispatch(addNotes(data))
       setActiveNote(data.id)
   }
-  
+  useEffect(() => {
+    fetchdata();
+      // eslint-disable-next-line
+  },[])
   
   const onAddNote = async () => {
     const newNote = {
@@ -35,15 +42,7 @@ const Home = () => {
       fetchdata()
   }
 
-  useEffect(() => {
-    const fetchdata = async () => {
-      const {data} = await supabase.from('noteTable')
-        .select('*')
-        dispatch(addNotes(data))
-        setActiveNote(data.id)
-    };
-    fetchdata ();
-  },[])
+  
  
   const onUpdateNote = (updatedNote) => {
       const updatedNotesArr = notes.map((note) => {
