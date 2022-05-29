@@ -18,7 +18,7 @@ const Home = () => {
     const {data} = await supabase.from('noteTable')
       .select('*')
       dispatch(addNotes(data))
-      setActiveNote(data.id)
+      // setActiveNote(data.id)
   }
   useEffect(() => {
     fetchdata();
@@ -38,10 +38,14 @@ const Home = () => {
       fetchdata()
   }
 
-
   const onUpdateNote = (updatedNote) => {
       const updatedNotesArr = notes.map((note) => {
       if (note.id === updatedNote.id) {
+        // return   await supabase.from('noteTable')
+        //   .update([
+        //  { title: updatedNote.title, body: updatedNote.body}
+        // ]).eq('id',updatedNote.id)
+
         return updatedNote;
       }
 
@@ -51,8 +55,6 @@ const Home = () => {
     dispatch(updateNotes(updatedNotesArr))
   };
   const getActiveNote = () => {
-
-    // console.log('ee',notes)
   return notes.find(i => i.id === activeNote)
  
   };

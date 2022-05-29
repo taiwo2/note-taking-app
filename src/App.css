@@ -32,6 +32,9 @@ button:hover {
 
 .main {
   display: flex;
+  padding: 10px;
+  border: 2px solid black;
+  /* height: 500vh; */
 }
 
 

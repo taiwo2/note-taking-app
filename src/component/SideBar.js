@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import {connect} from 'react-redux';
+
 const Sidebar = ({notes,onAddNote,activeNote,setActiveNote}) => {
   const [textInput, setTextInput] = useState("");
   
@@ -44,4 +46,4 @@ const Sidebar = ({notes,onAddNote,activeNote,setActiveNote}) => {
   );
 };
 
-export default Sidebar;
+export default connect() (Sidebar);
