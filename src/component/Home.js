@@ -15,10 +15,15 @@ const Home = () => {
   const {notes} = useSelector(mapState);
   
   const fetchdata = async () => {
-    const {data} = await supabase.from('noteTable')
-      .select('*')
-      dispatch(addNotes(data))
-      // setActiveNote(data.id)
+    try {
+      const {data,error} = await supabase.from('noteTable')
+        .select('*')
+        dispatch(addNotes(data));
+        if (error) throw error;
+    }catch(error){
+      console.log(error)
+    }
+    
   }
   useEffect(() => {
     fetchdata();
@@ -27,15 +32,19 @@ const Home = () => {
   
   const onAddNote = async () => {
     const newNote = {
-          title: "Untitled Note",
-          body: "wahha",
-        };
-     await supabase
-      .from('noteTable')
-      .insert([
-         newNote
-      ])
-      fetchdata()
+      title: "Untitled Note",
+      body: "",
+    };
+      try{
+        await supabase
+        .from('noteTable')
+        .insert([
+           newNote
+        ])
+        fetchdata()
+      }catch(error){
+        console.log(error)
+      }
   }
 
   const onUpdateNote = (updatedNote) => {
@@ -55,7 +64,7 @@ const Home = () => {
     dispatch(updateNotes(updatedNotesArr))
   };
   const getActiveNote = () => {
-  return notes.find(i => i.id === activeNote)
+    return notes.find(i => i.id === activeNote)
  
   };
 
